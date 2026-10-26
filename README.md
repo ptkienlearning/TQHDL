@@ -1,33 +1,29 @@
-# Urban Retail Intelligence — HCMC 2025
+# Bán lẻ thông minh — Dashboard tương tác (tiếng Việt)
 
-A static, interactive data visualization website for the Midterm Project.
+Website tĩnh phân tích 240 giao dịch bán lẻ tại TP.HCM năm 2025. Không cần backend, framework, cài đặt hay build. Biểu đồ được vẽ trực tiếp bằng SVG và JavaScript nên không phụ thuộc CDN biểu đồ.
 
-## Files
-- `index.html` — webpage structure
-- `style.css` — responsive layout and visual design
-- `app.js` — filters, charts, KPIs, table, and CSV export
-- `data.js` — embedded transaction dataset (240 rows)
+## Tệp trong dự án
+- `index.html`: cấu trúc giao diện tiếng Việt
+- `style.css`: giao diện responsive
+- `app.js`: lọc dữ liệu, KPI, biểu đồ SVG, tương tác, bảng, xuất CSV/JSON
+- `data.js`: dữ liệu giao dịch nhúng trong trang
 
-## Run locally
-Open `index.html` in a modern browser. Internet access is required for Chart.js and Google Fonts CDN resources. The transaction data is bundled locally in `data.js`; no backend or build step is required.
+## Chạy thử
+Mở `index.html` bằng trình duyệt hiện đại. Dữ liệu và biểu đồ chạy cục bộ; kết nối Internet chỉ cần nếu muốn tải phông chữ Google Fonts.
 
-## Deploy to GitHub Pages
-1. Rename this folder/repository to the required name: `<YOUR_MSHV>_DataViz_Midterm` (replace the placeholder with your actual student ID).
-2. Create a GitHub repository with that name.
-3. Upload `index.html`, `style.css`, `app.js`, `data.js`, and `README.md` to the repository root.
-4. Open **Settings → Pages**.
-5. Under **Build and deployment**, choose **Deploy from a branch**.
-6. Select branch `main`, folder `/ (root)`, and click **Save**.
-7. Wait for the Pages deployment to finish. The URL will look like:
-   `https://YOUR-USERNAME.github.io/YOUR_MSHV_DataViz_Midterm/`
-8. Open the published URL in a private/incognito window and verify filters, charts, table, and CSV export.
+## Tương tác có sẵn
+- Lọc theo cửa hàng, ngành hàng, nhóm khách, tháng, ngày bắt đầu/kết thúc, mức giảm giá, từ khóa, giao dịch lỗ và điểm đánh giá.
+- Nhấp vào thanh biểu đồ để lọc theo cửa hàng/ngành hàng/nhóm khách; nhấp vào tháng trên biểu đồ đường để lọc tháng.
+- Nhấp vào điểm trên biểu đồ phân tán để xem chi tiết giao dịch; mở chi tiết từ bảng và nhảy đến giao dịch tương ứng.
+- Sắp xếp bảng theo tiêu đề cột, chọn số dòng mỗi trang, chuyển trang, xuất dữ liệu lọc ra CSV hoặc JSON.
+- Biểu đồ SVG không phụ thuộc Chart.js CDN, tránh tình trạng trang không tải được thư viện nên biểu đồ trống.
 
-## Data and interpretation notes
-- Currency values are displayed in the dataset's original units. The CSV does not independently establish a currency label, so the dashboard does not assert one.
-- Missing customer ratings and delivery times are not treated as zero.
-- The findings describe this 240-transaction dataset and are not causal claims.
-- Charts and KPI cards update with store, category, customer type, month, and transaction search filters.
-- The website uses Chart.js via CDN. For a fully offline copy, download Chart.js and reference the local file instead.
+## Deploy GitHub Pages
+1. Tạo repository tên `<MSHV>_DataViz_Midterm` theo yêu cầu bài tập.
+2. Upload bốn tệp vào thư mục gốc: `index.html`, `style.css`, `app.js`, `data.js`.
+3. Vào **Settings → Pages → Deploy from a branch**, chọn `main` và `/(root)`, rồi Save.
+4. Đợi deploy hoàn tất và mở URL do GitHub Pages cung cấp.
+5. Kiểm tra bộ lọc, biểu đồ, bảng và chức năng tải CSV/JSON.
 
-## Submission checklist
-The assignment asks for the webpage/project name `<MSHV>_DataViz_Midterm` and a PDF named `<MSHV>.pdf` containing student name, MSHV, and the deployed URL.
+## Lưu ý dữ liệu
+Các biểu đồ và KPI được tính từ tập dữ liệu hiện hành. Tiền được hiển thị theo đơn vị số liệu gốc; ký hiệu “tr” trong biểu đồ nghĩa là triệu đơn vị dữ liệu, không tự khẳng định loại tiền tệ. Các mối quan hệ trong dữ liệu không tự chứng minh quan hệ nhân quả.
