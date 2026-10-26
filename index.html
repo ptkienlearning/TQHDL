@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive exploration of 240 retail transactions in Ho Chi Minh City, 2025.">
+  <title>Urban Retail Intelligence | HCMC 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="Urban Retail Intelligence home">
+        <span class="brand-mark">UR<span>↗</span></span>
+        <span><strong>Urban Retail</strong><small>DATA INTELLIGENCE</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <a class="active" href="#overview"><span>▦</span> Overview</a>
+        <a href="#insights"><span>◈</span> Key insights <b>05</b></a>
+        <a href="#performance"><span>▥</span> Store & category</a>
+        <a href="#trends"><span>⌁</span> Sales trends</a>
+        <a href="#relationships"><span>⤢</span> Relationships</a>
+        <a href="#transactions"><span>☷</span> Transactions</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="dataset-card">
+          <div class="dataset-icon">▤</div>
+          <strong>Dataset status</strong>
+          <p>2025 retail transactions</p>
+          <div class="status-line"><span class="status-dot"></span> Loaded locally</div>
+          <div class="dataset-meta"><span>Rows</span><strong id="sideRows">240</strong></div>
+          <div class="dataset-meta"><span>Missing ratings</span><strong>6</strong></div>
+        </div>
+        <div class="side-foot">MIDTERM PROJECT · DATAVIZ</div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="top">
+      <header class="topbar">
+        <div class="breadcrumbs">Analytics <span>/</span> Retail performance</div>
+        <div class="topbar-right"><span class="live-dot"></span> INTERACTIVE REPORT <span class="year-pill">2025</span></div>
+      </header>
+
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> HO CHI MINH CITY · 2025</div>
+          <h1>Retail performance,<br><em>revealed.</em></h1>
+          <p class="hero-desc">A data-driven look at what drives revenue, what protects profit, and where the customer experience can improve across four retail stores.</p>
+          <div class="hero-tags"><span>240 transactions</span><span>4 stores</span><span>5 product categories</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div>
+          <div class="hero-grid"></div>
+          <div class="hero-stat hero-stat-a"><small>PROFIT MARGIN</small><strong>25.1<span>%</span></strong><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="hero-stat hero-stat-b"><span class="hero-stat-icon">↗</span><div><small>TOP REVENUE MONTH</small><strong>November</strong></div></div>
+          <div class="hero-caption">FROM TRANSACTIONS TO INSIGHT <span>✳</span></div>
+        </div>
+      </section>
+
+      <section class="filter-panel">
+        <div class="filter-heading"><div><span class="section-kicker">EXPLORE THE DATA</span><h2>Make it your view</h2></div><button id="resetFilters" class="reset-btn">↺ Reset filters</button></div>
+        <div class="filters">
+          <label>Store<select id="storeFilter"><option value="All">All stores</option></select></label>
+          <label>Product category<select id="categoryFilter"><option value="All">All categories</option></select></label>
+          <label>Customer type<select id="customerFilter"><option value="All">All customers</option></select></label>
+          <label>Month<select id="monthFilter"><option value="All">All months</option></select></label>
+          <label class="search-filter">Search transaction<input id="searchFilter" type="search" placeholder="e.g. T0003"></label>
+        </div>
+        <div class="filter-note"><span class="tiny-pulse"></span> All charts and metrics update together when filters change.</div>
+      </section>
+
+      <section class="kpi-grid" aria-label="Key performance indicators">
+        <article class="kpi-card"><div class="kpi-top"><span>Total revenue</span><span class="kpi-icon purple">↗</span></div><strong id="kpiRevenue">—</strong><div class="kpi-foot"><span class="kpi-dot purple-dot"></span><span id="kpiTransactions">240</span> transactions in view</div></article>
+        <article class="kpi-card"><div class="kpi-top"><span>Total profit</span><span class="kpi-icon green">＋</span></div><strong id="kpiProfit">—</strong><div class="kpi-foot"><span class="kpi-dot green-dot"></span>Revenue less recorded cost</div></article>
+        <article class="kpi-card"><div class="kpi-top"><span>Profit margin</span><span class="kpi-icon orange">％</span></div><strong id="kpiMargin">—</strong><div class="kpi-foot"><span class="kpi-dot orange-dot"></span>Profit ÷ revenue</div></article>
+        <article class="kpi-card"><div class="kpi-top"><span>Average order value</span><span class="kpi-icon blue">⌁</span></div><strong id="kpiAov">—</strong><div class="kpi-foot"><span class="kpi-dot blue-dot"></span>Revenue per transaction</div></article>
+      </section>
+
+      <section class="section-block" id="insights">
+        <div class="section-heading"><div><span class="section-kicker">THE BIG PICTURE</span><h2>Five signals worth noticing</h2><p>Each finding is grounded in the transaction data—not just a chart title.</p></div><span class="section-count">01 — 05</span></div>
+        <div class="insight-grid">
+          <article class="insight-card insight-featured">
+            <div class="insight-number">01</div><div class="insight-label">PROFITABILITY GAP</div>
+            <h3>Electronics sells the most.<br><em>Fashion earns the most.</em></h3>
+            <p>Electronics leads revenue, but Fashion contributes the highest total profit and has a much stronger margin. Sales scale alone is an incomplete measure of category performance.</p>
+            <div class="insight-metrics"><div><small>Electronics revenue</small><strong>63.82M</strong></div><div><small>Fashion profit</small><strong>17.36M</strong></div><div><small>Fashion margin</small><strong>33.6%</strong></div></div>
+            <a href="#performance" class="text-link">Explore category performance <span>↗</span></a>
+          </article>
+          <article class="insight-card">
+            <div class="insight-number">02</div><div class="insight-label">STORE EFFICIENCY</div>
+            <h3>District 1 leads sales, but lags on margin.</h3>
+            <p>District 1 has the highest revenue and most transactions, yet its 21.5% margin is the lowest among the four stores. Thu Duc records the highest total profit.</p>
+            <div class="mini-insight-stat"><strong>21.5%</strong><span>District 1 margin<br><b>vs 27.0%</b> at District 3</span></div>
+            <a href="#performance" class="text-link">Compare stores <span>↗</span></a>
+          </article>
+          <article class="insight-card">
+            <div class="insight-number">03</div><div class="insight-label">DISCOUNT WATCH</div>
+            <h3>Deep discounts coincide with thinner margins.</h3>
+            <p>Transactions discounted above 15% have a 13.9% aggregate margin, compared with 32.0% for discounts of 0–5%. This is an association, not proof that discounts alone caused the difference.</p>
+            <div class="mini-insight-stat"><strong>−18.1 pp</strong><span>Margin gap between<br>deep and light discounts</span></div>
+            <a href="#relationships" class="text-link">Inspect discount patterns <span>↗</span></a>
+          </article>
+          <article class="insight-card">
+            <div class="insight-number">04</div><div class="insight-label">TIME & MOMENTUM</div>
+            <h3>November is the revenue peak; April is the trough.</h3>
+            <p>November generates 22.17M in revenue, while April records 7.71M. Monthly differences may reflect transaction volume and basket size; one year is not enough to establish recurring seasonality.</p>
+            <div class="mini-insight-stat"><strong>2.9×</strong><span>November revenue<br>compared with April</span></div>
+            <a href="#trends" class="text-link">Follow the monthly trend <span>↗</span></a>
+          </article>
+          <article class="insight-card">
+            <div class="insight-number">05</div><div class="insight-label">CUSTOMER EXPERIENCE</div>
+            <h3>Longer delivery is associated with lower ratings.</h3>
+            <p>Average rating declines as delivery time increases: approximately 4.51 for 1-day deliveries and 3.63 for 4-day deliveries. Missing ratings are excluded; this pattern is correlational.</p>
+            <div class="mini-insight-stat"><strong>−0.88</strong><span>Rating-point difference<br>between 1 and 4 days</span></div>
+            <a href="#relationships" class="text-link">Explore experience signals <span>↗</span></a>
+          </article>
+        </div>
+        <div class="insight-caveat"><span>ⓘ</span><p><strong>Interpretation note:</strong> The dataset contains 240 transactions from one year. These findings describe this dataset and should not be treated as causal evidence or as a representative estimate of all retail activity in Ho Chi Minh City.</p></div>
+      </section>
+
+      <section class="section-block" id="performance">
+        <div class="section-heading"><div><span class="section-kicker">WHERE VALUE COMES FROM</span><h2>Store & category performance</h2><p>Compare absolute contribution and relative efficiency in the same view.</p></div><span class="section-count">02 / PERFORMANCE</span></div>
+        <div class="chart-grid two-col">
+          <article class="chart-card">
+            <div class="chart-title-row"><div><h3>Store contribution</h3><p>Revenue and profit by store</p></div><span class="chart-badge">VND · dataset units</span></div>
+            <div class="chart-wrap"><canvas id="storeChart" aria-label="Revenue and profit by store"></canvas></div>
+            <div class="chart-insight"><span class="insight-arrow">↗</span><p><strong>Read it:</strong> Revenue ranks store scale; profit margin reveals how much revenue remains after recorded costs.</p></div>
+          </article>
+          <article class="chart-card">
+            <div class="chart-title-row"><div><h3>Category economics</h3><p>Revenue vs. profit by category</p></div><span class="chart-badge">VND · dataset units</span></div>
+            <div class="chart-wrap"><canvas id="categoryChart" aria-label="Revenue and profit by product category"></canvas></div>
+            <div class="chart-insight"><span class="insight-arrow">↗</span><p><strong>Read it:</strong> Electronics leads revenue; Fashion delivers the strongest total profit and margin.</p></div>
+          </article>
+          <article class="chart-card">
+            <div class="chart-title-row"><div><h3>Profit margin by store</h3><p>Profit as a share of revenue</p></div><span class="chart-badge">%</span></div>
+            <div class="chart-wrap short"><canvas id="marginChart" aria-label="Profit margin by store"></canvas></div>
+            <div class="chart-insight"><span class="insight-arrow">↗</span><p><strong>Read it:</strong> District 1 is the highest-revenue store but has the lowest margin in the dataset.</p></div>
+          </article>
+          <article class="chart-card">
+            <div class="chart-title-row"><div><h3>Customer mix</h3><p>Revenue contribution by customer type</p></div><span class="chart-badge">Share of revenue</span></div>
+            <div class="chart-wrap short"><canvas id="customerChart" aria-label="Revenue by customer type"></canvas></div>
+            <div class="chart-insight"><span class="insight-arrow">↗</span><p><strong>Read it:</strong> Office Workers contribute the most revenue, but this partly reflects their higher transaction count.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block" id="trends">
+        <div class="section-heading"><div><span class="section-kicker">WHEN SALES HAPPEN</span><h2>Monthly momentum</h2><p>Seasonal-looking patterns are worth exploring—but need multiple years to confirm seasonality.</p></div><span class="section-count">03 / TIME</span></div>
+        <article class="chart-card wide-card">
+          <div class="chart-title-row"><div><h3>Revenue & profit across 2025</h3><p>Monthly totals; filtered by the current store, category and customer selection</p></div><div class="legend-note"><span class="legend-swatch rev-swatch"></span> Revenue <span class="legend-swatch profit-swatch"></span> Profit</div></div>
+          <div class="chart-wrap tall"><canvas id="monthlyChart" aria-label="Monthly revenue and profit trends"></canvas></div>
+          <div class="chart-bottom-note"><span>●</span> November is the highest-revenue month in the full dataset (22.17M); April is the lowest (7.71M).</div>
+        </article>
+      </section>
+
+      <section class="section-block" id="relationships">
+        <div class="section-heading"><div><span class="section-kicker">WHAT MOVES WITH WHAT</span><h2>Relationships & risk signals</h2><p>Explore transaction-level patterns and avoid confusing correlation with causation.</p></div><span class="section-count">04 / RELATIONSHIPS</span></div>
+        <div class="chart-grid two-col">
+          <article class="chart-card">
+            <div class="chart-title-row"><div><h3>Discount vs. profit</h3><p>Each point represents one transaction</p></div><span class="chart-badge">Scatter plot</span></div>
+            <div class="chart-wrap"><canvas id="discountChart" aria-label="Discount versus profit scatter plot"></canvas></div>
+            <div class="chart-insight"><span class="insight-arrow">↗</span><p><strong>Read it:</strong> Inspect high-discount transactions and losses. Category and product cost may also explain the outcomes.</p></div>
+          </article>
+          <article class="chart-card">
+            <div class="chart-title-row"><div><h3>Delivery time vs. customer rating</h3><p>Average rating by delivery duration</p></div><span class="chart-badge">Rating / 5</span></div>
+            <div class="chart-wrap"><canvas id="deliveryChart" aria-label="Average customer rating by delivery days"></canvas></div>
+            <div class="chart-insight"><span class="insight-arrow">↗</span><p><strong>Read it:</strong> Ratings trend lower for longer deliveries in this sample. Six missing ratings are excluded.</p></div>
+          </article>
+        </div>
+        <article class="chart-card loss-card">
+          <div class="loss-icon">!</div><div class="loss-copy"><span class="section-kicker">EXCEPTION REVIEW</span><h3 id="lossTitle">Loss-making transactions</h3><p id="lossText">Review the transactions where recorded cost exceeds revenue.</p></div><div class="loss-number"><strong id="lossCount">6</strong><span>transactions<br>with negative profit</span></div>
+        </article>
+      </section>
+
+      <section class="section-block" id="transactions">
+        <div class="section-heading"><div><span class="section-kicker">THE DETAIL BEHIND THE STORY</span><h2>Transaction explorer</h2><p>Search and inspect the underlying rows. The table follows the active filters above.</p></div><span class="section-count">05 / DATA</span></div>
+        <article class="table-card">
+          <div class="table-toolbar"><div><strong id="tableCount">240 transactions</strong><span> · filtered view</span></div><button class="export-btn" id="exportCsv">↓ Export filtered CSV</button></div>
+          <div class="table-scroll"><table><thead><tr><th>Transaction</th><th>Date</th><th>Store</th><th>Category</th><th>Customer</th><th>Discount</th><th>Revenue</th><th>Profit</th><th>Rating</th><th>Delivery</th></tr></thead><tbody id="transactionBody"></tbody></table></div>
+          <div class="table-footer"><span id="tableFootnote">Showing latest transactions first</span><div class="table-pager"><button id="prevPage" aria-label="Previous page">←</button><span id="pageLabel">1 / 12</span><button id="nextPage" aria-label="Next page">→</button></div></div>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <a class="brand footer-brand" href="#top"><span class="brand-mark">UR<span>↗</span></span><span><strong>Urban Retail</strong><small>DATA INTELLIGENCE</small></span></a>
+        <p>Midterm Project · Interactive Data Visualization<br><span>Urban Retail Sales — HCMC 2025 · 240 transactions</span></p>
+        <a href="#top" class="back-top">Back to top ↑</a>
+      </footer>
+    </main>
+  </div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
